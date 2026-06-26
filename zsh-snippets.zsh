@@ -242,7 +242,19 @@ _zsh_snippets_init() {
 
 	zsh-snippets-reload
 
+	# Keep zsh-autosuggestions from wrapping our widget with its `modify`
+	# action. Without this, `_zsh_autosuggest_bind_widgets` (which runs on
+	# every precmd) rebinds `zsh-snippets-expand-or-accept` to a wrapper that
+	# clears POSTDISPLAY *before* our widget runs -- so we'd never see the
+	# ghost text and could not accept-and-expand. Adding the glob to the
+	# ignore list makes the next bind_widgets pass skip us for good.
+	if (( ! ${ZSH_AUTOSUGGEST_IGNORE_WIDGETS[(Ie)zsh-snippets-\*]} )); then
+		ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(zsh-snippets-\*)
+	fi
+
 	# Register the widget (must happen with zle active, i.e. interactively).
+	# `zle -N` also forces a clean rebind in case a previous autosuggestions
+	# pass already wrapped the name.
 	zle -N zsh-snippets-expand-or-accept _zsh_snippets_expand_or_accept_widget
 
 	# Prepend our strategy so snippet names win over history when both match.
