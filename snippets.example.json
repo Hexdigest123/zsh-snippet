@@ -1,0 +1,26 @@
+[
+  {
+    "name": "kill9",
+    "content": "kill -9 <id>"
+  },
+  {
+    "name": "gitForcePush",
+    "content": "git push --force-with-lease origin <branch>"
+  },
+  {
+    "name": "dockerSh",
+    "content": "docker exec -it <container> sh"
+  },
+  {
+    "name": "sshServer",
+    "content": "ssh root@<host> -p <port>"
+  },
+  {
+    "name": "tcpListen",
+    "content": "nc -lvp <port>"
+  },
+  {
+    "name": "todo",
+    "content": "echo TODO: remember the milk"
+  }
+]
