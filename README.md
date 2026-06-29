@@ -151,3 +151,7 @@ shellcheck install.sh     # installer lint
 nvim --headless /tmp/s.sh "+set runtimepath+=$PWD" \
   "+lua require('zsh-snippets').edit()" "+qa!"   # smoke-test the LuaSnip helper
 ```
+
+## License
+
+All rights reserved.
